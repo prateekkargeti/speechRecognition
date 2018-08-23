@@ -1,0 +1,27 @@
+{
+  "name": "speech-recognition",
+  "version": "1.0.0",
+  "description": "ION.HTML Speech Recognition Component",
+  "private": true,
+  "distFolder": "../dist/modules",
+  "scripts": {
+    "build": "webpack"
+  },
+  "dependencies": {
+    "@types/webspeechapi":"0.0.29",
+    "ion.web": "file:///Antoine/InnovatION/HTML5/HTML5_API118p1d1/ion.web_1.1.8-p1d8.tgz",
+    "lodash": "^4.16.4",
+    "reflect-metadata": "^0.1.8",
+    "rxjs": "^5.0.0-beta.12",
+    "systemjs": "^0.19.39",
+    "zone.js": "^0.7.2"
+    
+  },
+  "devDependencies": {
+    "fs-extra": "2.1.2",
+    "raw-loader": "0.5.1",
+    "ts-loader": "2.3.2",
+    "typescript": "2.5.2",
+    "webpack": "2.2.1"
+  }
+}

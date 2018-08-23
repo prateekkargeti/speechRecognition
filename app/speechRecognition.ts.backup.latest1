@@ -1,0 +1,73 @@
+/// <reference types="ion.web" />
+angular.module('speech-recognition').controller("recognition",[window, function (window) {
+
+    window.SpeechRecognition = window.SpeechRecognition       ||
+    window.webkitSpeechRecognition ||
+    null;
+
+if (window.SpeechRecognition === null) {
+document.getElementById('ws-unsupported').classList.remove('hidden');
+document.getElementById('StartListen').setAttribute('disabled', 'disabled');
+document.getElementById('StopListen').setAttribute('disabled', 'disabled');
+} else {
+
+    var recognition = new window.SpeechRecognition();
+    var transcription = document.getElementById('transcription');
+var log = document.getElementById('log');
+
+// Recogniser doesn't stop listening even if the user pauses
+recognition.continuous = true;
+
+// Start recognising
+recognition.onresult = function(event) {
+transcription.textContent = '';
+
+for (var i = event.resultIndex; i < event.results.length; i++) {
+if (event.results[i].isFinal) {
+transcription.textContent = event.results[i][0].transcript + ' (Confidence: ' + event.results[i][0].confidence + ')';
+} else {
+transcription.textContent += event.results[i][0].transcript;
+}
+}};
+
+// Listen for errors
+recognition.onerror = function(event) {
+log.innerHTML = 'Recognition error: ' + event.message + '<br />' + log.innerHTML;
+};
+
+recognition.onstart = function(){
+// Set if we need interim results
+console.log("start executed");
+    recognition.interimResults = document.getElementById("Interim");
+
+    try {
+    recognition.start();
+    log.innerHTML = 'Recognition started' + '<br />' + log.innerHTML;
+    } catch(ex) {
+    log.innerHTML = 'Recognition error: ' + ex.message + '<br />' + log.innerHTML;
+    }
+}
+
+recognition.onend = function(){
+        recognition.stop();
+        console.log("stop executed");
+        log.innerHTML = 'Recognition stopped' + '<br />' + log.innerHTML;
+    }
+
+recognition.onclear = function(){
+    console.log("clear executed");
+    transcription.textContent = '';
+    log.textContent = '';
+    }
+
+    var clickStartListen = document.getElementById('StartListen');
+    var clickStopListen = document.getElementById('StopListen');
+    var clickClear = document.getElementById('Clear');
+
+    clickStartListen.addEventListener("click",recognition.onstart);
+    clickStopListen.addEventListener("click",recognition.onend);
+    clickClear.addEventListener("click",recognition.onclear);
+
+}
+}])
+export var templateUrl = require("./speechRecognition.tpl.html");

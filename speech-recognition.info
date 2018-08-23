@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<info xmlns="urn:schemas-iontrading-com:libraryinfo.v1" fileVersion="1.0">
+   <library name="speech-recognition" version="100" displayName="ION.HTML Speech Recognition Component" moduleType="html5" entryPoint="index.js">
+      <dependency>
+         <dependentLibrary name="ion.web" version="111"/>
+      </dependency>
+   </library>
+</info>

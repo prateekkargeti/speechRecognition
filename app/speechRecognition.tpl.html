@@ -1,0 +1,16 @@
+<div ng-app="speech-recognition" ng-controller="recognition">
+    <h1>ION Speech Recognition</h1>
+    <h2><ion-content-block caption="Transcription"></h2>
+      <textarea id="transcription" class="ion-input" readonly></textarea>
+    <span>Results:</span>
+    <label><input id="Final" input type="radio" name="recognition-type" value="final" checked="checked" /> Final only</label>
+    <label><input id="Interim" input type="radio" name="recognition-type" value="interim" /> Interim</label>
+    <h3>Log</h3>
+    <div id="log"></div>
+      <div class="ion-button-group">    
+        <ionweb-button id="StartListen" icon='accept' icon-placement='after' color="green" ng-click='recognition.testListen()' role='primary'>Start Listening</ionweb-button>
+        <ionweb-button id="StopListen" icon='clear' icon-placement='after' color="red" role='primary'>Stop Listening</ionweb-button>
+        <ionweb-button id="Clear" icon='delete' icon-placement='after' color="grey" role='primary'>Clear</ionweb-button>  
+      </div>
+    <span id="ws-unsupported" class="hidden">API not supported</span>
+</div>
